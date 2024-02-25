@@ -2,6 +2,10 @@
   "name": "assesment-air-quality-ui",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">18.19.0",
+    "yarn": "Please use npm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
