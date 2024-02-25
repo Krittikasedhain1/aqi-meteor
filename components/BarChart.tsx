@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Skeleton from "./Skeleton";
 
 ChartJS.register(
   CategoryScale,
@@ -40,5 +41,38 @@ const BarChart = ({ barData }: { barData: any }) => {
     </div>
   );
 };
+
+export const BarCartSkeleton = () => (
+  <div className="flex h-[500px] gap-10">
+    <div className="flex gap-2 max-w-full">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+    <div className="flex gap-2">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+    <div className="flex gap-2">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+    <div className="flex gap-2">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+    <div className="flex gap-2">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+    <div className="flex gap-2">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+    <div className="flex gap-2">
+      <Skeleton className="w-[55px] h-full" />
+      <Skeleton className="w-[55px] h-full" />
+    </div>
+  </div>
+);
 
 export default BarChart;

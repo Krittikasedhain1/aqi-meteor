@@ -1,8 +1,9 @@
-import Card from "@/components/Card";
-import BarChart from "@/components/BarChart";
+import Card, { CardSkeleton } from "@/components/Card";
+import BarChart, { BarCartSkeleton } from "@/components/BarChart";
 import Search from "@/components/Search";
 import { Suspense } from "react";
 import Header from "@/components/Header";
+import Skeleton from "@/components/Skeleton";
 
 const labels = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"];
 
@@ -72,6 +73,10 @@ export default function Home() {
           <Card color="red" name="co2" value="123" />
           <Card color="green" name="co2" value="123" />
           <Card color="yellow" name="co2" value="123" />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
         </div>
       </div>
       <div className="container md:px-20 px-4 mx-auto flex flex-col gap-4">
@@ -80,14 +85,14 @@ export default function Home() {
           <Card color="red" name="co2" value="123" />
           <Card color="green" name="co2" value="123" />
           <Card color="yellow" name="co2" value="123" />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
         </div>
       </div>
       <div className="container px-20 mx-auto">
-        <Suspense
-          fallback={
-            <div className="flex justify-center items-center text-white h-[60px] bg-red-500 rounded relative mt-1 md:w-[50%] w-full "></div>
-          }
-        >
+        <Suspense fallback={<BarCartSkeleton />}>
+          <BarCartSkeleton />
           <BarChart barData={barData} />
         </Suspense>
       </div>
@@ -97,6 +102,9 @@ export default function Home() {
           <Card color="green" name="Bejing" value="100" timePeriod="Today" />
           <Card color="red" name="Kathmandu" value="800" timePeriod="Today" />
           <Card color="yellow" name="New York" value="500" timePeriod="Today" />
+          <CardSkeleton containsPeriod />
+          <CardSkeleton containsPeriod />
+          <CardSkeleton containsPeriod />
         </div>
       </div>
     </main>
