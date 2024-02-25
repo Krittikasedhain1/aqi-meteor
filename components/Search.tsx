@@ -1,31 +1,38 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import React from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import useSWR from "swr";
-
-const apiKey = "ge-9a9d07c380e99828";
+import useDebounce from "@/hooks/use-debounce";
+import { Location } from "@/types/location.types";
+import { useRouter } from "next/navigation";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
-  const data = await response.json();
-  return data.features || [];
+  const { data } = await response.json();
+  return data;
 };
 
 const Search = () => {
-  const [inputValue, setInputValue] = useState("");
-  const { data, error } = useSWR(
-    inputValue.trim() !== "" && inputValue?.length > 3
-      ? `https://api.geocode.earth/v1/autocomplete?api_key=${apiKey}&layers=coarse&text=
-${encodeURIComponent(inputValue)}`
-      : null,
+  const [inputValue, setInputValue] = React.useState("kathmandu");
+  const debouncedSearch = useDebounce(inputValue, 500);
+
+  const { data, isLoading, error } = useSWR<Location[]>(
+    debouncedSearch ? `/api/search?keyword=${debouncedSearch}` : null,
     fetcher
+    // {
+    //   refreshInterval: 10,
+    // }
   );
+  const router = useRouter();
 
   return (
     <Combobox
       value={inputValue}
-      onChange={(value: any) => setInputValue(value)}
+      onChange={(value) => {
+        const [lat, lng] = value as unknown as [number, number];
+        router.push(`/station/${lat}/${lng}`);
+      }}
     >
       <div className="relative mt-1 md:w-[50%] w-full ">
         <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
@@ -37,7 +44,7 @@ ${encodeURIComponent(inputValue)}`
           />
         </div>
         <Transition
-          as={Fragment}
+          as={React.Fragment}
           leave="transition ease-in duration-100"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
@@ -45,26 +52,17 @@ ${encodeURIComponent(inputValue)}`
         >
           <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
             {error && <div>Error loading data</div>}
-            {!error && !data && <div>Loading...</div>}
+            {/* {isLoading && <div>Loading...</div>} */}
             {data &&
-              data.map((prediction: any) => (
+              data.map((location) => (
                 <Combobox.Option
-                  key={prediction.properties.source_id}
-                  value={prediction.properties.label}
-                  as={Fragment}
+                  key={location.uid}
+                  value={location.station.geo}
+                  as={React.Fragment}
                 >
-                  {({ active, selected }) => (
-                    <li
-                      className={`${
-                        active
-                          ? "bg-blue-500 text-white"
-                          : "bg-white text-black"
-                      }`}
-                    >
-                      {selected && "✅"}
-                      {prediction.properties.label}
-                    </li>
-                  )}
+                  <li className="bg-white text-black">
+                    {location.station.name}
+                  </li>
                 </Combobox.Option>
               ))}
           </Combobox.Options>

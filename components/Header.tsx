@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Suspense } from "react";
 import Search from "./Search";
 
 const Header = () => {
@@ -12,13 +11,8 @@ const Header = () => {
         <h1 className="text-4xl font-normal ">AQI</h1>
         <span className="text-xs font-light">weather forecast</span>
       </Link>
-      <Suspense
-        fallback={
-          <div className="flex justify-center items-center text-white h-[60px] bg-gray-200 rounded relative mt-1 md:w-[50%] w-full "></div>
-        }
-      >
-        <Search />
-      </Suspense>
+
+      <Search />
     </div>
   );
 };
