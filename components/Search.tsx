@@ -62,7 +62,7 @@ const Search = () => {
         router.push(`/station/${lat}/${lng}`);
       }}
     >
-      <div className="relative mt-1 w-full">
+      <div className="relative mt-1 md:w-[50%] w-full">
         <div className="relative w-full cursor-default overflow-hidden rounded-lg focus-within:rounded-none  bg-white text-left shadow-md focus:outline-none sm:text-sm">
           <Combobox.Input
             className="w-full border-none py-5 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 focus:border-transparent"
