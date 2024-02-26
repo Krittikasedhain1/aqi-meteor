@@ -2,13 +2,15 @@ import {
   BAD,
   GOOD,
   MODERATE,
+  NOT_FOUND,
   UNHEALTHY,
   VERY_UNHEALTHY,
   severityLabels,
 } from "@/constants/severity.constants";
 import Skeleton from "./Skeleton";
+import { DailyForecast } from "@/types/location.types";
 
-const bgColors = {
+export const bgColors = {
   red: "bg-[#ff7898]",
   [UNHEALTHY]: "bg-[#ff7898]",
   green: "bg-[#89FFA3]",
@@ -19,6 +21,7 @@ const bgColors = {
   [MODERATE]: "bg-[#FDE400]",
   blue: "bg-blue-500",
   [VERY_UNHEALTHY]: "bg-blue-500",
+  [NOT_FOUND]: "bg-gray-300",
 };
 
 const Card = ({
@@ -29,7 +32,7 @@ const Card = ({
 }: {
   color: keyof typeof bgColors;
   name: string;
-  value: string;
+  value: string | DailyForecast["avg"];
   timePeriod?: string;
 }) => {
   const colorClass = bgColors[color];
@@ -37,11 +40,13 @@ const Card = ({
     <div
       className={`${colorClass} w-full flex flex-col justify-center px-5 py-5 gap-2 rounded h-52`}
     >
-      <span className="uppercase font-semibold text-lg">{name}</span>
+      <span className="uppercase font-semibold text-lg line-clamp-2">
+        {name}
+      </span>
       <span className="text-6xl font-bold">{value}</span>
       {(color in severityLabels || Boolean(timePeriod)) && (
         <span className="text-xs font-bold">
-          {severityLabels[color as keyof typeof severityLabels] || timePeriod}
+          {timePeriod || severityLabels[color as keyof typeof severityLabels]}
         </span>
       )}
     </div>

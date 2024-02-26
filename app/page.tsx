@@ -1,11 +1,12 @@
+import CTAButton from "@/components/CTAButton";
 import Header from "@/components/Header";
-import Link from "next/link";
+import { Suspense } from "react";
 
 export default function page() {
   return (
-    <main className="min-h-screen h-[100vh]  text-black  bg-green-300">
+    <main className="min-h-screen pb-10 text-black  bg-green-300">
       <Header />
-      <div className="mt-20 container px-10 flex flex-col gap-8 justify-center items-center m-auto max-w-4xl">
+      <div className="mt-10 md:mt-20 container px-10 flex flex-col gap-8 justify-center items-center m-auto max-w-4xl">
         <svg
           className="h-[200px] w-[200px]"
           xmlns="http://www.w3.org/2000/svg"
@@ -71,14 +72,9 @@ export default function page() {
           <strong className=" mx-2">(AQI)</strong> in your area and take
           necessary precautions to safeguard your health.
         </p>
-        <div>
-          <Link
-            href="/aqi"
-            className="rounded-full block  text-yellow-100 bg-green-500 hover:bg-yellow-100 hover:text-green-500 shadow-2xl hover:shadow-inner transition-all duration-150	 font-bold py-5 px-10"
-          >
-            Check my Air index
-          </Link>
-        </div>
+        <Suspense>
+          <CTAButton />
+        </Suspense>
       </div>
     </main>
   );

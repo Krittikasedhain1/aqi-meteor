@@ -2,6 +2,7 @@ type Time = {
   tz: string;
   stime: string;
   vtime: number;
+  iso: string;
 };
 
 export type Location = {
@@ -44,7 +45,7 @@ export type Iaqi = {
   wg?: { v: number };
 };
 
-type DailyForecast = {
+export type DailyForecast = {
   avg: number;
   day: string;
   max: number;
