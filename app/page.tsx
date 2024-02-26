@@ -1,6 +1,6 @@
+import { Suspense } from "react";
 import CTAButton from "@/components/CTAButton";
 import Header from "@/components/Header";
-import { Suspense } from "react";
 
 export default function page() {
   return (
@@ -63,8 +63,8 @@ export default function page() {
             fill="#f44336"
           />
         </svg>
-        <h1 className="text-5xl font-bold">
-          <span className="text-red-500"> Breathe Easy:</span> Track Your Air
+        <h1 className="text-5xl font-bold text-center">
+          <span className="text-red-500 "> Breathe Easy:</span> Track Your Air
           Quality
         </h1>
         <p className="text-center text-xl font-sm mb-5">

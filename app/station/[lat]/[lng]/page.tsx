@@ -18,8 +18,8 @@ export default async function HomePage({
     `https://api.waqi.info/feed/geo:${lat};${lng}/?token=${process.env.WAQI_TOKEN}`,
     { cache: "no-cache" }
   );
+
   const station: { status: string; data: Station } = await response.json();
-  // TODO: cannot connect
   if (!response.ok || station.status !== "ok") {
     notFound();
   }

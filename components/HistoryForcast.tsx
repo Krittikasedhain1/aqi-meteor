@@ -5,7 +5,6 @@ import { getAqiSeverity } from "@/utils/aqi-condition";
 
 const HistoryForcast = ({ data }: { data: Station }) => {
   const forecast = getForcast(data?.forecast?.daily?.pm25);
-  console.log(forecast);
   return (
     <div className="container md:px-20 px-4 mx-auto flex flex-col gap-4">
       <h2 className="text-center text-3xl">AQI History & Forcast</h2>

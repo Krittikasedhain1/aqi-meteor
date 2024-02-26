@@ -18,25 +18,25 @@ const fetcher = async (url: string) => {
 const SearchSkeleton = () => (
   <div>
     <Combobox.Option
-      className="relative cursor-default select-none py-2 pl-10 pr-4 "
+      className="relative cursor-default select-none py-1 pl-10 pr-4 "
       value="kathmandu"
     >
       <Skeleton className="h-8" />
     </Combobox.Option>
     <Combobox.Option
-      className="relative cursor-default select-none py-2 pl-10 pr-4 "
+      className="relative cursor-default select-none py-1 pl-10 pr-4 "
       value="kathmandu"
     >
       <Skeleton className="h-8" />
     </Combobox.Option>
     <Combobox.Option
-      className="relative cursor-default select-none py-2 pl-10 pr-4 "
+      className="relative cursor-default select-none py-1 pl-10 pr-4 "
       value="kathmandu"
     >
       <Skeleton className="h-8" />
     </Combobox.Option>
     <Combobox.Option
-      className="relative cursor-default select-none py-2 pl-10 pr-4 "
+      className="relative cursor-default select-none py-1 pl-10 pr-4 "
       value="kathmandu"
     >
       <Skeleton className="h-8" />
@@ -78,8 +78,12 @@ const Search = () => {
           leaveTo="opacity-0"
           afterLeave={() => setInputValue("")}
         >
-          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-            {error && <div>Error loading data</div>}
+          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            {error && (
+              <div className="py-2 pl-10 pr-4 text-red-400 text-bold">
+                Error loading data
+              </div>
+            )}
             {isLoading && <SearchSkeleton />}
             {data &&
               data.map((location) => (
