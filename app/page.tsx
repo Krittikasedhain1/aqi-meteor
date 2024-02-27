@@ -1,10 +1,18 @@
 import { Suspense } from "react";
 import CTAButton from "@/components/CTAButton";
 import Header from "@/components/Header";
+import { Metadata } from "next";
+import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "AQI Meteor - weather forcast",
+  description:
+    "Stay informed about the air you breathe. Monitor the Air Quality Index(AQI) in your area and take necessary precautions to safeguard your health.",
+};
 
 export default function page() {
   return (
-    <main className="min-h-screen pb-10 text-black  bg-green-300">
+    <main className="min-h-screen text-black  bg-green-300">
       <Header />
       <div className="mt-10 md:mt-20 container px-10 flex flex-col gap-8 justify-center items-center m-auto max-w-4xl">
         <svg
@@ -76,6 +84,7 @@ export default function page() {
           <CTAButton />
         </Suspense>
       </div>
+      <Footer />
     </main>
   );
 }

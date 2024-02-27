@@ -17,6 +17,7 @@ type ExtendedStation = Station & {
     lng: number;
   };
 };
+const recentsToShow = 6;
 
 const RecentViewed = ({ data }: { data: Station }) => {
   const params = useParams<{ lat: string; lng: string }>();
@@ -29,7 +30,7 @@ const RecentViewed = ({ data }: { data: Station }) => {
     setPrevList(
       prevData
         .filter((prev: ExtendedStation) => prev.idx !== data.idx)
-        .slice(0, 4)
+        .slice(0, recentsToShow)
     );
     const isNotFresh = prevData.find((x: Station) => x.idx === data.idx);
     if (!isNotFresh) {

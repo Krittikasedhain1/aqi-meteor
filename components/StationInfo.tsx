@@ -35,7 +35,7 @@ const StationInfo = ({
           <h2 className="-ml-1.5 text-6xl font-bold">{stationName}</h2>
           <span className="font-bold text-base">{location} </span>
           <span className="font-bold text-sm">
-            {data.city.geo.join(", ")}{" "}
+            {data.city.geo.map((x: number) => formattedNumber(x)).join(", ")}{" "}
             <span className="text-gray-800 font-bold text-xs">
               (updated: {formattedDate})
             </span>

@@ -7,7 +7,7 @@ import useDebounce from "@/hooks/use-debounce";
 import { Location } from "@/types/location.types";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import Skeleton from "./Skeleton";
+import Skeleton from "../Skeleton";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);

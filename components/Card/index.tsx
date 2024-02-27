@@ -7,7 +7,7 @@ import {
   VERY_UNHEALTHY,
   severityLabels,
 } from "@/constants/severity.constants";
-import Skeleton from "./Skeleton";
+import Skeleton from "../Skeleton";
 import { DailyForecast } from "@/types/location.types";
 
 export const bgColors = {

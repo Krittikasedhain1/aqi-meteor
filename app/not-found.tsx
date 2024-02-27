@@ -9,7 +9,7 @@ function NotFound() {
         <h1 className="text-5xl font-bold text-red-400">Uh-oh!</h1>
         <MeterIllustration />
         <p className="text-2xl text-gray-600 mt-5">
-          The air you're breathing is clear, but this page isn't.
+          The air you&apos;re breathing is clear, but this page isn&apos;t.
         </p>
         <div className="mt-5">
           <Link
