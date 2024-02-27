@@ -4,7 +4,7 @@ import Link from "next/link";
 const Footer = ({ className }: { className?: string }) => (
   <footer
     className={clsx(
-      " rounded-t-2xl mt-8 text-gray-700 p-8 text-center flex flex-col gap-1",
+      "rounded-t-3xl mt-8 text-gray-700 p-8 text-center flex flex-col gap-1",
       className || "bg-green-300"
     )}
   >
