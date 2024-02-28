@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type LocationType = {
@@ -7,15 +8,55 @@ type LocationType = {
   longitude: number;
 } | null;
 
+const requestLocation = (
+  rqCallback: ({
+    latitude,
+    longitude,
+  }: {
+    latitude: number;
+    longitude: number;
+  }) => void
+) => {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      rqCallback({ latitude, longitude });
+      // You can now use the latitude and longitude as needed.
+    },
+    (error) => {
+      console.error(`Error getting location: ${error.message}`);
+    }
+  );
+};
+
 const CTAButton = () => {
   const [location, setLocation] = useState<LocationType>();
+  const router = useRouter();
 
   useEffect(() => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(({ coords }) => {
-        const { latitude, longitude } = coords;
-        setLocation({ latitude, longitude });
-      });
+      if (navigator.permissions) {
+        navigator.permissions
+          .query({ name: "geolocation" })
+          .then((permissionStatus) => {
+            if (permissionStatus.state === "granted") {
+              requestLocation(({ latitude, longitude }) => {
+                setLocation({ latitude, longitude });
+              });
+            } else if (permissionStatus.state === "prompt") {
+              requestLocation(({ latitude, longitude }) => {
+                router.push(`/station/${latitude}/${longitude}`);
+              });
+            } else {
+              alert(
+                "Location access denied. Please allow location access in your browser settings."
+              );
+            }
+          });
+      } else {
+        alert("Geolocation is not supported by your browser");
+      }
     }
   }, []);
 
@@ -25,17 +66,9 @@ const CTAButton = () => {
         .query({ name: "geolocation" })
         .then((permissionStatus) => {
           if (permissionStatus.state === "granted") {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                alert(`Your location is: ${latitude}, ${longitude}`);
-                // You can now use the latitude and longitude as needed.
-              },
-              (error) => {
-                console.error(`Error getting location: ${error.message}`);
-              }
-            );
+            requestLocation(({ latitude, longitude }) => {
+              setLocation({ latitude, longitude });
+            });
           } else if (permissionStatus.state === "prompt") {
             window.location.reload();
           } else {
