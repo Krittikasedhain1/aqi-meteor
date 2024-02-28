@@ -148,10 +148,6 @@ The project structure follows a standard Next.js layout:
 
 Customize the app by configuring environmental variables, API keys, and other settings. Refer to the documentation for specific details.
 
-## Contributing
-
-If you'd like to contribute to this project, please follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
