@@ -58,7 +58,7 @@ const CTAButton = () => {
         alert("Geolocation is not supported by your browser");
       }
     }
-  }, []);
+  }, [router]);
 
   const handleShareLocation = () => {
     if (navigator.permissions) {
