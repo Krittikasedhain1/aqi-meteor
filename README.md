@@ -4,48 +4,11 @@
 
 This project aims to create an Air Quality Index (AQI) app using Next.js, a React-based framework for building web applications. The app will provide users with real-time information about air quality in different locations, helping them make informed decisions about their outdoor activities.
 
-## Why React and Next.js?
-
-### React
-
-React is a JavaScript library for building user interfaces, developed and maintained by Facebook. It is widely used in the industry for its component-based architecture, which promotes code reusability, maintainability, and a more structured development approach. React's virtual DOM efficiently updates the UI, ensuring optimal performance.
-
-Key advantages of using React for this project:
-
-- **Component-based Architecture**: Organizing UI elements into components makes it easy to manage and maintain code.
-- **Virtual DOM**: React's virtual DOM optimizes updates, improving the app's performance and providing a smoother user experience.
-
-- **Large Ecosystem**: A vast collection of libraries, tools, and resources are available within the React ecosystem, facilitating development.
-
 ## Motivation for Using Next.js
 
-While React provides a solid foundation for building dynamic user interfaces, the decision to incorporate Next.js into this project offers several key advantages:
+### Secure Token Handling with Next.js SSR
 
-### 1. **Server-Side Rendering (SSR)**
-
-Next.js provides built-in support for Server-Side Rendering (SSR), which is crucial for improving the initial load times of the application. SSR renders pages on the server, delivering HTML to the client, and thus contributes to better SEO and a faster perceived page load speed.
-
-### 2. **Automatic Code Splitting**
-
-Next.js offers automatic code splitting out of the box. This feature helps reduce the initial bundle size by only loading the JavaScript that is necessary for the current page. It optimizes the loading performance, especially beneficial for users on slower network connections.
-
-### 3. **Improved Page Performance**
-
-The combination of React and Next.js enhances overall page performance. With features like prefetching and optimized client-side navigation, users experience a smoother and more responsive application.
-
-### 4. **Simplified Deployment**
-
-Deploying React applications can sometimes be a complex process. Next.js simplifies this with easy deployment options to platforms like Vercel, Netlify, and others. This streamlined deployment process allows for faster iterations and updates.
-
-### 5. **Built-in API Routes**
-
-Next.js introduces a simple way to create API routes within the same project. This can be advantageous for fetching data or handling server-side logic without the need for a separate backend server. It keeps the project structure clean and cohesive.
-
-### 6. **Rich Ecosystem**
-
-By choosing Next.js, you benefit from a rich ecosystem of plugins, tools, and community support. This can significantly speed up development, provide solutions to common challenges, and ensure the project stays up-to-date with best practices.
-
-In summary, the decision to use Next.js alongside React for this Air Quality Index app is motivated by the desire to enhance performance, simplify development and deployment, and take advantage of the additional features that Next.js brings to the table.
+One of the key reasons for choosing Next.js in this project is to implement server-side rendering (SSR) for enhanced security, especially when handling sensitive information like API tokens. In the context of this Air Quality Index (AQI) app, the World Air Quality Index (WAQI) API requires an API key for data retrieval.By utilizing Next.js and SSR, we ensure that the API requests are made on the server, preventing the exposure of tokens in the client-side code.
 
 ## Air Quality Data and WAQI API Integration
 
@@ -55,26 +18,40 @@ This Air Quality Index (AQI) app relies on the World Air Quality Index (WAQI) AP
 
 To integrate the WAQI API into the app, follow these steps:
 
-1. **Obtain API Key**: Sign up on the [WAQI website](https://waqi.info/) to obtain an API key. This key is essential for making requests to the WAQI API.
+- **Obtain API Key**: Sign up on the [WAQI website](https://waqi.info/) to obtain an API key. This key is essential for making requests to the WAQI API.
 
-2. **API Requests**: Utilize the WAQI API to fetch air quality data based on the user's selected location or predefined locations. Example API request:
+### Setting up API Token in a `.env` File
 
-   ```javascript
-   // Example API Request
-   const apiKey = process.env.WAQI_TOKEN;
-   const location = "latitude;longitude";
+To securely store your API token and sensitive information, you can use a `.env` file in your Next.js project. Follow these steps:
 
-   const response = await fetch(
-     `https://api.waqi.info/feed/geo:${location}/?token=${apiKey}`
-   );
-   const data = await response.json();
-   ```
+#### 1. Create a `.env` File from the .env.example file
 
-   Place WAQI_TOKEN in .env using actual API key obtained from WAQI.
+In the root of your project, create a file named `.env`. This file will store your environment variables or copy .env.example as `.env`
 
-## Let's get started
+#### 2. Add API Token to `.env`
 
-Follow these steps to set up the development environment:
+Open the `.env` file and add your WAQI API key like this:
+
+```plaintext
+WAQI_API_KEY=your-api-key-here
+```
+
+- **API Requests**: Utilize the WAQI API to fetch air quality data based on the user's selected location or predefined locations. Example API request:
+
+  ```javascript
+  // Example API Request
+  const apiKey = process.env.WAQI_TOKEN;
+  const location = "latitude;longitude";
+
+  const response = await fetch(
+    `https://api.waqi.info/feed/geo:${location}/?token=${apiKey}`
+  );
+  const data = await response.json();
+  ```
+
+## Running the Application
+
+### Follow these steps to set up the development environment:
 
 1. **Clone the Repository**:
 
@@ -97,13 +74,15 @@ Follow these steps to set up the development environment:
 
    The app will be accessible at `http://localhost:3000`.
 
-4. **Build the App**:
+### Follow these steps to set up the production environment:
+
+1. **Build the App**:
 
    ```bash
    npm run build
    ```
 
-5. **Start the App on prod**:
+2. **Start the App on prod**:
 
    ```bash
    npm run start
@@ -139,15 +118,13 @@ In addition to fetching predefined locations, the app can also use the user's na
 
 The project structure follows a standard Next.js layout:
 
-- /pages # React components for each page
+- /app # React components for each page
 - /components # Reusable React components
-- /styles # Styling for the app
+- /types # Types for the app data
+- /hooks # Custom hooks used within
+- /utils # Utility functions used in project
 - /public # Static assets (images, icons, etc.)
 
-## Additional Configuration
+## Contact
 
-Customize the app by configuring environmental variables, API keys, and other settings. Refer to the documentation for specific details.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+Krittika Sedhain - krittikasedhain11@gmail.com
