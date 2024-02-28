@@ -18,7 +18,7 @@ This Air Quality Index (AQI) app relies on the World Air Quality Index (WAQI) AP
 
 To integrate the WAQI API into the app, follow these steps:
 
-- **Obtain API Key**: Sign up on the [WAQI website](https://waqi.info/) to obtain an API key. This key is essential for making requests to the WAQI API.
+- **Obtain API Key**: Sign up on the [WAQI website](https://aqicn.org/data-platform/token/) to obtain an API key. This key is essential for making requests to the WAQI API.
 
 ### Setting up API Token in a `.env` File
 
