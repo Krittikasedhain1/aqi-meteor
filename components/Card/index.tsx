@@ -40,10 +40,10 @@ const Card = ({
     <div
       className={`${colorClass} w-full flex flex-col justify-center px-5 py-5 gap-2 rounded h-52`}
     >
-      <span className="uppercase font-semibold text-lg line-clamp-2">
+      <span className="uppercase font-semibold text-base md:text-lg line-clamp-2">
         {name}
       </span>
-      <span className="text-6xl font-bold">{value}</span>
+      <span className="text-4xl md:text-6xl font-bold">{value}</span>
       {(color in severityLabels || Boolean(timePeriod)) && (
         <span className="text-xs font-bold">
           {timePeriod || severityLabels[color as keyof typeof severityLabels]}

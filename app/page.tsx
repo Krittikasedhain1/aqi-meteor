@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <main className="min-h-screen text-black  bg-green-300">
+    <main className="min-h-screen container text-black  bg-green-300">
       <Header />
       <div className="mt-10 md:mt-20 container px-10 flex flex-col gap-8 justify-center items-center m-auto max-w-4xl">
         <svg

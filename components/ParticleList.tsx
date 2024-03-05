@@ -6,7 +6,7 @@ import Card from "./Card";
 const ParticleList = ({ data }: { data: Station }) => {
   return (
     <div className="mx-auto px-4 container">
-      <div className="grid md:grid-cols-4 grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {particles.map((p) => (
           <Card
             key={p}
